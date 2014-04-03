@@ -12,14 +12,16 @@ from config import c_id
 
 count = 33 # this much works
 
-# <codecell>
+# desired tag
+tag = "igers"
 
-request_url = 'https://api.instagram.com/v1/tags/igers/media/recent?count={}&client_id={}'.format(count,c_id)
-max_tag_id_url = '&max_tag_id={}'
-file_name = "./instagram-tags-landscape-{0}.json"
+# request scheme for recent media per igers tag
+request_url = 'https://api.instagram.com/v1/tags/{}/media/recent?count={}&client_id={}'.format(tag, count, c_id)
+file_name = "./results/instagram-tags-landscape-{0}.json"
 image_count = 0
 iteration = 0
-
+max_image_count = 50
+image_ids = []
 # <codecell>
 
 r = requests.get(request_url)
@@ -29,38 +31,15 @@ while image_count < 50:
         print(r)
     result = r.json()
     data = result['data']
-    pagination = result['pagination']
+    for image in data:
+        image_ids.append(image['id'])
+    pagination = result['pagination']a
     f = open(file_name.format(iteration), 'w' )
     f.write(json.dumps(result))
     f.close()
-    image_count = image_count + len(data)
+    image_count = len(set(image_ids))
     time.sleep(1)
     r = requests.get(pagination['next_url'])
     iteration = iteration + 1
 
 print "Iteration {0} | Photo count {1}".format(iteration, image_count)
-
-# <codecell>
-
-
-# <codecell>
-
-
-# <codecell>
-
-
-# <codecell>
-
-
-# <codecell>
-
-
-# <codecell>
-
-
-# <codecell>
-
-
-# <codecell>
-
-
