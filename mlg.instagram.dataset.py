@@ -8,7 +8,7 @@ import simplejson as json
 import time
 from datetime import datetime
 
-from config.py import c_id
+from config import c_id
 
 count = 33 # this much works
 
