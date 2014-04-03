@@ -8,10 +8,8 @@ import simplejson as json
 import time
 from datetime import datetime
 
-# <codecell>
+from config.py import c_id
 
-c_id=''
-c_secret=''
 count = 33 # this much works
 
 # <codecell>
