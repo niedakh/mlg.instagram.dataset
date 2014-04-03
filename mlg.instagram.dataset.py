@@ -20,7 +20,7 @@ request_url = 'https://api.instagram.com/v1/tags/{}/media/recent?count={}&client
 file_name = "./results/instagram-tags-landscape-{0}.json"
 image_count = 0
 iteration = 0
-max_image_count = 50
+max_image_count = 1000 * 1000
 image_ids = []
 # <codecell>
 
@@ -33,7 +33,7 @@ while image_count < max_image_count:
     data = result['data']
     for image in data:
         image_ids.append(image['id'])
-    pagination = result['pagination']a
+    pagination = result['pagination']
     f = open(file_name.format(iteration), 'w' )
     f.write(json.dumps(result))
     f.close()
