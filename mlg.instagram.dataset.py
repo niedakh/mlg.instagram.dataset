@@ -25,7 +25,7 @@ image_ids = []
 # <codecell>
 
 r = requests.get(request_url)
-while image_count < 50:
+while image_count < max_image_count:
     print "Iteration {0} | Photo count {1}".format(iteration, image_count)
     if r.status_code != 200:
         print(r)
